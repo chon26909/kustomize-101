@@ -1,0 +1,22 @@
+resources:
+  - ../../base
+
+# patchesStrategicMerge:
+#   - deployment-patch.yaml
+
+patches:
+  - path: patch.yaml
+    target:
+      kind: Deployment
+      name: myapp
+
+configMapGenerator:
+  - name: app-config
+    files:
+      - .env
+
+secretGenerator:
+  - name: app-secret
+    files:
+      - secret.env
+    type: Opaque
